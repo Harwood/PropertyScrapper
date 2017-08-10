@@ -124,11 +124,12 @@ def main(argv):
 
 if __name__ == "__main__":
     """Entry and argv count check"""
+    # TODO add python pre-commit hooks
     # TODO write unit tests
     # TODO check if lxml is installed and give relevent instructions
     if len(sys.argv) == 2:
         # TODO handle mutiple urls and file of urls to handle 1000 scans
-        # this should be done async, parallel, or some other way to ensure 
+        # this should be done async, parallel, or some other way to ensure
         # resonable return time (eg not an hour))
         main(sys.argv)
         # TODO bonus thought, create Slack bot interface
