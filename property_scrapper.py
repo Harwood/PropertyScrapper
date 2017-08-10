@@ -131,6 +131,8 @@ if __name__ == "__main__":
         # TODO handle mutiple urls and file of urls to handle 1000 scans
         # this should be done async, parallel, or some other way to ensure
         # resonable return time (eg not an hour))
+        # TODO accept input from stdin
+        # TODO persist results in db or on disk
         main(sys.argv)
         # TODO bonus thought, create Slack bot interface
     else:
