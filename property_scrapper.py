@@ -15,7 +15,7 @@ __credits__ = ["Carter Harwood"]
 __license__ = "MIT"
 __version__ = "0.0.1"
 __maintainer__ = "Carter Harwood"
-__email__ = "rob@spot.colorado.edu"
+__email__ = "Harwood@users.noreply.github.com"
 __status__ = "Prototype"
 
 # Source: https://stackoverflow.com/a/15882054
@@ -54,7 +54,8 @@ class PropertyScrapper(object):
         tree = html.fromstring(page.content)
         react_items = tree.xpath("//script[@type='application/json']")
 
-        #The substring is used to remove surrounding <!-- -->
+        # The substring is used to remove surrounding <!-- -->
+        # TODO clean up to be safer then grab 3rd item
         return json.loads(react_items[2].text[4:-3])
 
     def get_listing_json(self):
@@ -123,8 +124,14 @@ def main(argv):
 
 if __name__ == "__main__":
     """Entry and argv count check"""
+    # TODO write unit tests
+    # TODO check if lxml is installed and give relevent instructions
     if len(sys.argv) == 2:
+        # TODO handle mutiple urls and file of urls to handle 1000 scans
+        # this should be done async, parallel, or some other way to ensure 
+        # resonable return time (eg not an hour))
         main(sys.argv)
+        # TODO bonus thought, create Slack bot interface
     else:
         usage_print(sys.argv)
         exit
