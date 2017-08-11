@@ -4,10 +4,15 @@
 """
 
 import sys
-from lxml import html
 import json
 from collections import namedtuple
 import requests
+
+try:
+    from lxml import html
+except ImportError:
+    lxml_missing = True
+
 
 __author__ = "Carter Harwood"
 __copyright__ = "2017"
@@ -27,7 +32,7 @@ class PropertyScrapper(object):
     """Handles scrapping Airbnb pages and pulling out listing details
 
     Attributes:
-        site_url: web url of Airbnb listing
+    site_url: web url of Airbnb listing
     """
 
     def __init__(self, url):
@@ -92,12 +97,12 @@ def print_listing(listing, info=[]):
     info.append(("Market:", "   " + listing.market))
     info.append(("Rating:", "   " + str(listing.review_details_interface.review_score) + "/100 - " + str(listing.review_details_interface.review_count) + " reviews"))
     info.append(("Property Type:",
-        "   " + listing.room_and_property_type))
+                 "   " + listing.room_and_property_type))
     info.append(("At a Glance:",
-        "   " + listing.bed_label,
-        "   " + listing.bathroom_label,
-        "   Guests - " + listing.guest_label,
-        ))
+                 "   " + listing.bed_label,
+                 "   " + listing.bathroom_label,
+                 "   Guests - " + listing.guest_label,
+                 ))
     info.append(("Price:", "   " + listing.price_formatted_for_embed))
     info.append(("Photo:", "   " + listing.photos[0].large_cover.split('?')[0]))
     info.append(("Description:", "   " + listing.description))
@@ -124,9 +129,13 @@ def main(argv):
 
 if __name__ == "__main__":
     """Entry and argv count check"""
+    if lxml_missing:
+        print('lxml is retqured to run. Install using:')
+        print('    pip3 install lxml')
+        sys.exit()
+
     # TODO add python pre-commit hooks
     # TODO write unit tests
-    # TODO check if lxml is installed and give relevent instructions
     if len(sys.argv) == 2:
         # TODO handle mutiple urls and file of urls to handle 1000 scans
         # this should be done async, parallel, or some other way to ensure
@@ -137,4 +146,4 @@ if __name__ == "__main__":
         # TODO bonus thought, create Slack bot interface
     else:
         usage_print(sys.argv)
-        exit
+        sys.exit()
