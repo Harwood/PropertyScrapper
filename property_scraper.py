@@ -212,10 +212,18 @@ class DownloadManager(object):
     def run(self):
         """Spawns threads based number of urls and desired concurrent threads.
         """
-        assert self.queue.queue, "no URLs given"
+        try:
+            assert self.queue.queue, "no URLs given"
+        except AssertionError:
+            sys.stderr.write('No URLs given')
+            sys.exit()
+
 
         n_conn = min(self.conn, len(self.queue.queue))
-        assert 1 <= n_conn <= 10000, "invalid number of concurrent connections"
+        try:
+            assert 1 <= n_conn <= 10000, "invalid number of concurrent connections"
+        except AssertionError:
+            sys.stderr.write('invalid number of concurrent connections')
 
         for url in range(n_conn):
             thread = self.Worker(self.db, self.queue)
