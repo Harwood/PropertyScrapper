@@ -197,7 +197,15 @@ class DownloadManager(object):
         queue = Queue.Queue()
 
         print('Processing urls...')
-        with click.progressbar(click.open_file(self.urls, 'r')) as url_file:
+        input = []
+
+        try:
+            input = click.open_file(self.urls, 'r')
+        except FileNotFoundError:
+            if validators.url(self.urls):
+                input.append(self.urls.strip())
+
+        with click.progressbar(input) as url_file:
             for url in url_file:
                 url = url.strip()
 
@@ -271,13 +279,7 @@ def __handle_any_missing_modules():
                               readable=False),
               help='SQLite database to create/use, defaults to listings.db.')
 @click.argument('file',
-                nargs=+1,
-              type=click.Path(exists=True,
-                              file_okay=True,
-                              dir_okay=False,
-                              writable=False,
-                              readable=True,
-                              allow_dash=True))
+                nargs=1)
 def main(conn, db, file):
     """Main"""
 
