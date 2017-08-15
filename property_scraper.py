@@ -14,6 +14,8 @@ except ImportError:
 import requests
 import sqlite3
 
+import click
+from lxml import html
 # We should ignore SIGPIPE when using pycurl.NOSIGNAL - see
 # the libcurl tutorial for more info.
 try:
@@ -21,30 +23,14 @@ try:
     signal.signal(signal.SIGPIPE, signal.SIG_IGN)
 except ImportError:
     pass
-
-missing_modules = []
-
-try:
-    import click
-except ImportError:
-    missing_modules.append('click')
-
-try:
-    from lxml import html
-except ImportError:
-    missing_modules.append('lxml')
-
-try:
-    import validators
-except ImportError:
-    missing_modules.append('validators')
+import validators
 
 
 __author__     = "Carter Harwood"
 __copyright__  = "2017"
 __credits__    = ["Carter Harwood"]
 __license__    = "MIT"
-__version__    = "0.0.2"
+__version__    = "0.0.3"
 __maintainer__ = "Carter Harwood"
 __email__      = "Harwood@users.noreply.github.com"
 __status__     = "Prototype"
