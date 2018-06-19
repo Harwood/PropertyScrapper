@@ -273,5 +273,5 @@ def main(conn, db, file):
     dm.run()
 
 if __name__ == "__main__":
-    """Entry point"""
+    """Entry point """
     main()
