@@ -1,6 +1,7 @@
 # PropertyScraper
 
 [![asciicast](https://asciinema.org/a/ZfGvmQlhOOJraKcSgbyPhEWmV.png)](https://asciinema.org/a/ZfGvmQlhOOJraKcSgbyPhEWmV)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHarwood%2FPropertyScraper.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHarwood%2FPropertyScraper?ref=badge_shield)
 
 ## Description
 
@@ -47,3 +48,7 @@ echo "https://www.airbnb.co.uk/rooms/14531512" | ./property_scraper.py -
 - [ ] Proper testing
 - [ ] Implement with different libraries and languages to explore performance variations
 - [ ] Create Slack bot
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHarwood%2FPropertyScraper.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FHarwood%2FPropertyScraper?ref=badge_large)
